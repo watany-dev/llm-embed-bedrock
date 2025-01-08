@@ -9,7 +9,7 @@ AWSCLI_ZIP = awscliv2.zip
 
 # Default target
 .PHONY: all
-all: uv awscli setup-path reload-shell
+all: uv awscli setup-path reload-shell tools
 
 # Download and install uv
 .PHONY: uv
@@ -64,3 +64,12 @@ verify:
 	@echo "Verifying installations..."
 	@which uv && uv --version || echo "uv not found"
 	@which aws && aws --version || echo "awscli not found"
+
+# download tools
+.PHONY: tools
+tools:
+	@echo "Tools Setting..."
+	uv tool install llm
+	uv tool install pytest
+	uv tool install ruff
+	@echo "Tools Setting complete"
