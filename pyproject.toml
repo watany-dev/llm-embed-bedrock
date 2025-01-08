@@ -1,0 +1,58 @@
+[project]
+name = "llm-embed-bedrock"
+version = "0.1.0"
+description = "LLM plugin for Embedding models on AWS Bedrock"
+readme = "README.md"
+authors = [{name = "Sean Blakey"}, {name = "Will Sorenson"}]
+license = {text = "Apache-2.0"}
+classifiers = [
+    "License :: OSI Approved :: Apache Software License"
+]
+
+dependencies = [
+    "boto3>=1.35.92",
+    "httpx>=0.28.1",
+    "pillow>=11.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+    "ruff>=0.8.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/watany-dev/llm-embed-bedrock"
+
+[project.entry-points.llm]
+embed-bedrock = "llm_embed_bedrock"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = [
+    "COM812",
+    "ISC001", 
+    "D1",    # undocumented
+    "D203",  # one blank line before class
+    "D213",  # multi-line summary second line
+    "TD001", # invalid todo tag
+    "TD002", # missing todo author
+    "TD003", # missing todo link
+    "PD011", # pandas use of dot values
+]
+
+logger-objects = ["src.library.logger.LOGGER"]
+
+[tool.ruff.lint.pylint]
+max-args = 6
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
